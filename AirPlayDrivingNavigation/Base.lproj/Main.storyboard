@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Lho-7R-ARH">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="gie-LD-7NN">
+            <objects>
+                <viewController id="Lho-7R-ARH" customClass="ViewController" customModule="External" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="or0-y3-jYV"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cz4-Aw-NmY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dpj-i1-KCk">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XVQ-mA-tDl">
+                                <rect key="frame" x="0.0" y="110" width="414" height="428"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Lho-7R-ARH" id="Pqh-TA-bFI"/>
+                                </connections>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JZy-mV-lU2">
+                                <rect key="frame" x="0.0" y="60" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.20014828439999999" green="0.25760895010000001" blue="0.79883009199999999" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="roQ-a3-QbN"/>
+                                </constraints>
+                                <state key="normal" title="iPhone Control 1">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcj-TP-L2y">
+                                <rect key="frame" x="0.0" y="796" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.13577049350000001" green="0.17465318099999999" blue="0.56515139250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="uD9-YI-qIv"/>
+                                </constraints>
+                                <state key="normal" title="iPhone Control 3">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speed: mp/h" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAr-db-Q7S">
+                                <rect key="frame" x="8" y="612" width="398" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="19A-DB-Ive"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <color key="textColor" red="0.046961521610000001" green="0.1539944983" blue="0.58318131350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHq-qR-7fI">
+                                <rect key="frame" x="28" y="650" width="358" height="130"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="jru-RR-r6n"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="100"/>
+                                <color key="textColor" red="0.16521073650000001" green="0.80006385140000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" red="0.046961521610000001" green="0.1539944983" blue="0.58318131350000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <size key="shadowOffset" width="2" height="2"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67r-iA-IVS">
+                                <rect key="frame" x="0.0" y="538" width="414" height="50"/>
+                                <color key="backgroundColor" red="0.20014828439999999" green="0.25760895010000001" blue="0.79883009199999999" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="8gA-0p-Kys"/>
+                                </constraints>
+                                <state key="normal" title="iPhone Control 2">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.84811040140000005" green="0.92443794290000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JZy-mV-lU2" secondAttribute="trailing" id="0qU-3R-LM8"/>
+                            <constraint firstItem="DAr-db-Q7S" firstAttribute="leading" secondItem="Dpj-i1-KCk" secondAttribute="leading" constant="8" id="1Hj-2Z-xE2"/>
+                            <constraint firstAttribute="trailing" secondItem="bcj-TP-L2y" secondAttribute="trailing" id="1xs-bh-zgr"/>
+                            <constraint firstItem="JZy-mV-lU2" firstAttribute="leading" secondItem="Dpj-i1-KCk" secondAttribute="leading" id="5xP-Xv-aAh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AHq-qR-7fI" secondAttribute="trailing" constant="8" id="Gxe-Ks-VGQ"/>
+                            <constraint firstItem="XVQ-mA-tDl" firstAttribute="top" secondItem="JZy-mV-lU2" secondAttribute="bottom" id="NIW-1p-yaD"/>
+                            <constraint firstAttribute="trailing" secondItem="DAr-db-Q7S" secondAttribute="trailing" constant="8" id="ZZ3-dr-4os"/>
+                            <constraint firstItem="bcj-TP-L2y" firstAttribute="top" secondItem="AHq-qR-7fI" secondAttribute="bottom" constant="16" id="Zyy-f7-Ix3"/>
+                            <constraint firstItem="XVQ-mA-tDl" firstAttribute="leading" secondItem="Dpj-i1-KCk" secondAttribute="leading" id="afU-qe-tmL"/>
+                            <constraint firstItem="bcj-TP-L2y" firstAttribute="leading" secondItem="Dpj-i1-KCk" secondAttribute="leading" id="d97-2Y-6cB"/>
+                            <constraint firstItem="DAr-db-Q7S" firstAttribute="top" secondItem="67r-iA-IVS" secondAttribute="bottom" constant="24" id="fFT-0P-3k6"/>
+                            <constraint firstItem="AHq-qR-7fI" firstAttribute="top" secondItem="DAr-db-Q7S" secondAttribute="bottom" constant="8" id="le3-xc-TWi"/>
+                            <constraint firstItem="67r-iA-IVS" firstAttribute="top" secondItem="XVQ-mA-tDl" secondAttribute="bottom" id="nKy-o0-BbP"/>
+                            <constraint firstItem="67r-iA-IVS" firstAttribute="leading" secondItem="Dpj-i1-KCk" secondAttribute="leading" id="pfR-Z8-8Xv"/>
+                            <constraint firstAttribute="trailing" secondItem="XVQ-mA-tDl" secondAttribute="trailing" id="sSp-QF-eh9"/>
+                            <constraint firstItem="AHq-qR-7fI" firstAttribute="leading" secondItem="Dpj-i1-KCk" secondAttribute="leadingMargin" constant="8" id="x5j-iD-1HV"/>
+                            <constraint firstItem="JZy-mV-lU2" firstAttribute="top" secondItem="or0-y3-jYV" secondAttribute="bottom" constant="16" id="yKv-da-AMn"/>
+                            <constraint firstItem="Cz4-Aw-NmY" firstAttribute="top" secondItem="bcj-TP-L2y" secondAttribute="bottom" constant="16" id="yLR-0U-4t6"/>
+                            <constraint firstAttribute="trailing" secondItem="67r-iA-IVS" secondAttribute="trailing" id="zgQ-OC-Yw3"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CB5-w0-NYy"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <connections>
+                        <outlet property="mapView" destination="XVQ-mA-tDl" id="Jmf-cb-XzJ"/>
+                        <outlet property="speedLabel" destination="AHq-qR-7fI" id="Upb-8V-Xxn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3rt-h4-Jdw" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="33.333333333333336" y="30.803571428571427"/>
+        </scene>
+    </scenes>
+</document>
