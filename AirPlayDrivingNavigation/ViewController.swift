@@ -15,11 +15,13 @@ class ViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var speedLabel: UILabel!
 
+    var externalSpeedLabel = UILabel()
+    var externalMapView = MKMapView()
+    var externalWindow = UIWindow()
+
     var locationManager = CLLocationManager()
-    var adjustRegion: MKCoordinateRegion?
-    var externalWindow: UIWindow!
-    var externalMap: MKMapView?
-    var myLocation = CLLocationCoordinate2DMake(0, 0)
+    var internalAdjustRegion: MKCoordinateRegion?
+    var externalAdjustRegion: MKCoordinateRegion?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,10 +45,7 @@ class ViewController: UIViewController {
         }
 
         center.addObserver(forName: UIScreen.didDisconnectNotification, object: nil, queue: nil) { notification in
-            if let externalWindow = self.externalWindow {
-                externalWindow.isHidden = true
-                self.externalWindow = nil
-            }
+            self.externalWindow.isHidden = true
         }
 
         speedLabel.text = "0"
@@ -61,42 +60,49 @@ class ViewController: UIViewController {
         }
     }
 
-    // Initialize an external screen
     private func initializeExternalScreen(externalScreen: UIScreen) {
-        // Create a new window sized to the external screen's bounds
         externalWindow = UIWindow(frame: externalScreen.bounds)
-        // Assign the screen object to the screen property of the new window
         externalWindow.screen = externalScreen
-        // Configure the MapView
+
+        externalMapView = MKMapView(frame: externalWindow.frame)
+        externalMapView.mapType = .mutedStandard
+        let mapCamera = MKMapCamera()
+        mapCamera.centerCoordinate = externalAdjustRegion?.center ?? CLLocationCoordinate2DMake(0, 0)
+        mapCamera.pitch = 90
+        mapCamera.heading = 90
+        externalMapView.camera = mapCamera
+        externalMapView.showsUserLocation = true
+
+        externalSpeedLabel = UILabel(frame: speedLabel.frame)
+        externalSpeedLabel.text = "0"
+        externalSpeedLabel.textColor = UIColor.blue
+        externalSpeedLabel.font = speedLabel.font
+        externalSpeedLabel.backgroundColor = .white
+        externalSpeedLabel.layer.cornerRadius = 10
+        externalSpeedLabel.clipsToBounds = true
+        externalSpeedLabel.layer.borderColor = UIColor.blue.cgColor
+        externalSpeedLabel.layer.borderWidth = 2.0
+        externalSpeedLabel.textAlignment = .center
+        externalSpeedLabel.alpha = 0.5
+
         let view = UIView(frame: externalWindow.frame)
-        externalMap = MKMapView(frame: externalWindow.frame)
-        if let map = externalMap {
-            map.mapType = .mutedStandard
-            let mapCamera = MKMapCamera()
-            mapCamera.centerCoordinate = myLocation
-            mapCamera.pitch = 90
-            mapCamera.heading = 90
-            map.camera = mapCamera
-            map.showsUserLocation = true
-            view.addSubview(map)
-        }
+        view.addSubview(externalMapView)
+        view.addSubview(externalSpeedLabel)
 
         externalWindow.addSubview(view)
-        // Make the window visible
         externalWindow.makeKeyAndVisible()
-        // Zoom in on the map in the external display
-        adjustExternalScreenRegion()
     }
 
     private func updateLocation(location: CLLocationCoordinate2D) {
-        myLocation = location
-        var region = MKCoordinateRegion(center: location, latitudinalMeters: 5000, longitudinalMeters: 5000)
-        adjustRegion = mapView.regionThatFits(region)
-        mapView.setRegion(adjustRegion!, animated: true)
-        region = MKCoordinateRegion(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
-        adjustRegion = mapView.regionThatFits(region)
+        let internalMapRegion = MKCoordinateRegion(center: location, latitudinalMeters: 5000, longitudinalMeters: 5000)
+        internalAdjustRegion = mapView.regionThatFits(internalMapRegion)
+        mapView.setRegion(internalAdjustRegion!, animated: true)
 
-        adjustExternalScreenRegion()
+        let externalMapRegion = MKCoordinateRegion(center: location, latitudinalMeters: 500, longitudinalMeters: 500)
+        externalAdjustRegion = externalMapView.regionThatFits(externalMapRegion)
+        externalMapView.setRegion(externalAdjustRegion!, animated: true)
+
+//externalMapView.camera.centerCoordinate = externalAdjustRegion.center
     }
 
     private func updateSpeed(speed: CLLocationSpeed?) {
@@ -105,13 +111,8 @@ class ViewController: UIViewController {
             return
         }
 
+        externalSpeedLabel.text = "\(speed)"
         speedLabel.text = "\(speed)"
-    }
-
-    private func adjustExternalScreenRegion() {
-        if let externalMap = self.externalMap, let adjustRegion = self.adjustRegion {
-            externalMap.camera.centerCoordinate = adjustRegion.center
-        }
     }
 }
 
@@ -129,9 +130,7 @@ extension ViewController: CLLocationManagerDelegate {
             return
         }
 
-        let location = CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude)
-        updateLocation(location: location)
-
+        updateLocation(location: CLLocationCoordinate2D(latitude: coord.latitude, longitude: coord.longitude))
         updateSpeed(speed: manager.location?.speed)
     }
 }
